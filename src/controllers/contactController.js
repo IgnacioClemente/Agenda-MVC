@@ -1,6 +1,6 @@
 const {prisma} = require('../../prisma/prismaClient');
 
-contactListViewController = async (req, res) => {
+contactListViewController = async(req, res) => {
     const contacts = await prisma.contacto.findMany({where:{
         deletedAt: null
     }});
@@ -17,10 +17,9 @@ contactViewController = async(req, res) => {
     };
 };
 
-deleteContactController = async (req,res) => {
+deleteContactController = async(req,res) => {
     try {
-        const id = Number(req.params.id)
-
+        const id = Number(req.params.id);
         await prisma.contacto.update({
             where: {id},
             data: {
@@ -33,7 +32,7 @@ deleteContactController = async (req,res) => {
     };
 };
 
-formContactViewController = async (req,res) => {
+formContactViewController = async(req,res) => {
     res.render('contact/create', {title:'Create contact'});
 };
 
@@ -47,10 +46,36 @@ createContactController = async(req, res) => {
     };
 };
 
+editContactController = async(req,res) =>{
+    try {
+        const id = Number(req.params.id);
+        const contact = await prisma.contacto.findFirstOrThrow({where:{id}});
+        res.render('contact/edit', {contact});
+    } catch (error) {
+        res.render('contact/contact', {title:`ERROR`, error:"No pudimos editar el contacto"});
+    }
+};
+
+contactEditController = async(req,res) =>{
+    try {
+        const id = Number(req.params.id);
+        const contact = await prisma.contacto.update({where:{id}, data:
+        {
+        firstname: req.body.firstname, 
+        lastname: req.body.lastname
+    }})
+        res.redirect('contact');
+    } catch (error) {
+        res.render('contact/contact', {title:`ERROR`, error:"No pudimos editar el contacto"});
+    }
+};
+
 module.exports = {
     contactListViewController,
     contactViewController,
     deleteContactController,
     formContactViewController,
-    createContactController
+    createContactController,
+    editContactController,
+    contactEditController
 };

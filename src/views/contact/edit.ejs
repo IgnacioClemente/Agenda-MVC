@@ -1,0 +1,26 @@
+<div class="forum-contact">
+    <form name="form-create" action="" method="post">
+        <div class="nb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class= "form-control" name="id" value="<%=contact.id %>" disabled>
+        </div>
+        <div class="nb-3">
+            <label for="firstname" class="form-label">Firstname</label>
+            <input type="text" class= "form-control" name="firstname" value="<%= contact.firstname %>">
+        </div>
+        <div class="nb-3">
+            <label for="lastname" class="form-label">Lastname</label>
+            <input type="text" class= "form-control" name="lastname" value="<%= contact.lastname %>">
+            <div class="nb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class= "form-control" name="email" value="<%= contact.email %>" disabled>
+            </div>
+            <div class="nb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" class= "form-control" name="phone" value="<%= contact.phone %>">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <a href="/contact" class="btn btn-primary mt-2">Volver</a>
+    </form>
+</div>
