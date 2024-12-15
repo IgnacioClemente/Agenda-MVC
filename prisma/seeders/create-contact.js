@@ -15,7 +15,7 @@ const seedContact = async () => {
         }
         console.log('Contactos cargados correctamente');
     }catch (error){
-        console.error('Error al ejecutrar el seeder:', error);
+        console.error('Error al ejecutar el seeder:', error);
     }
 }
 (async () => {
